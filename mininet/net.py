@@ -657,7 +657,6 @@ class Mininet( object ):
             pass
 
         info( '*** Creating network\n' )
-
         if not self.controllers and self.controller:
             # Add a default controller
             info( '*** Adding controller\n' )
@@ -686,8 +685,8 @@ class Mininet( object ):
                     params.setdefault( 'batch', True )
                 self.addBaseStation( baseStationName, **params )
                 info( baseStationName + ' ' )
-                info( '\n*** Associating Stations:\n' )
-                
+                               
+                info( '\n*** Associating Stations:\n' )                
                 if(self.apcommandControll):            
                     self.apcommand = self.apcommand + ("\" > ap.conf")
                     os.system(self.apcommand)
@@ -698,7 +697,8 @@ class Mininet( object ):
                 for srcName, dstName, params in topo.links(
                         sort=True, withInfo=True ):
                     self.addLink( **params )
-                    info( '(%s, %s) ' % ( srcName, dstName ) )                    
+                    info( '(%s, %s) ' % ( srcName, dstName ) )  
+                #os.system("ovs-vsctl add-port %s %s" % ("bs1", "wlan3"))                  
                 info( '\n' )
         else:
             for hostName in topo.hosts():
@@ -1232,7 +1232,7 @@ class Mininet( object ):
                     error( 'link dst status change failed: %s\n' % result )
 
     def interact( self ):
-        "Start network and run our simple CLI."
+        "Start network and run our simple CLI."        
         self.start()
         result = CLI( self )
         self.stop()
