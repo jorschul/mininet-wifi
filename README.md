@@ -21,6 +21,9 @@ iw - apt-get install iw
 python-setuptools - apt-get install python-setuptools  
 hostapd - apt-get install hostapd  
 
+###Get Started  
+sudo mn --wifi *It will start a simple topology with 2 stations and 1 access point. The stations also includes a physical ethernet interface.  
+
 ###Team
 Ramon dos Reis Fontes (ramonrf@dca.fee.unicamp.br)  
 Samira Afzal (samira@dca.fee.unicamp.br)  
