@@ -5,7 +5,7 @@ This example shows how to add work with WiFi on Mininet.
 """
 
 from mininet.net import Mininet
-from mininet.node import Controller, RemoteController, OVBaseStation
+from mininet.node import OVSController, RemoteController, OVBaseStation
 from mininet.cli import CLI
 from mininet.log import setLogLevel
 from mininet.link import TCLink
@@ -19,7 +19,7 @@ def topology():
     sta2 = net.addStation( 'sta2' )
     bs1 = net.addBaseStation( 'bs1' )
 
-    c0 = net.addController('c0', controller=Controller, port=6633 )
+    c0 = net.addController('c0', controller=OVSController, port=6633 )
 
     print "*** Adding Link"
     net.addLink(sta1, bs1)
