@@ -19,6 +19,7 @@ step 4: make install
 ####Some known dependencies  
 iw - apt-get install iw  
 python-setuptools - apt-get install python-setuptools  
+hostapd - apt-get install hostapd  
 
 ###Team
 Ramon dos Reis Fontes (ramonrf@dca.fee.unicamp.br)  
