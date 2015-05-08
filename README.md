@@ -13,7 +13,7 @@ It is not work properly yet
 ####Option 2: via apt  
 step 1: apt-get install mininet  
 step 2: git clone https://github.com/ramonfontes/mininet-wifi/  
-step 3: cd mininet-wifi
+step 3: cd mininet-wifi  
 step 4: make install  
 
 ####Some known dependencies  
