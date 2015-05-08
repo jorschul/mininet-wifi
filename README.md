@@ -1,9 +1,9 @@
 ###About Mininet-WiFi
-Mininet-WiFi is a release of Mininet (http://mininet.org/) which allows the using of both WiFi Stations and BaseStations. More informations and details about this release will be available in soon on Intrig's GitHub profile (https://github.com/intrig-unicamp/). This release only add wifi features and you may work with Mininet like the oficial Mininet release (https://github.com/mininet/mininet). It is also allows work with OpenFlow using Bridges, but we are working to improve this issue.        
+Mininet-WiFi is a release of Mininet (http://mininet.org/) which allows the using of both WiFi Stations and Access Points. More informations and details about this release will be available in soon on Intrig's GitHub profile (https://github.com/intrig-unicamp/). This release only add wifi features and you may work with Mininet like the oficial Mininet release (https://github.com/mininet/mininet). It is also allows work with OpenFlow using Bridges, but we are working to improve this issue.        
 
 ##Installation  
 ####Option 1: via install.sh  
-It is not working properly yet  
+It is not working properly yet.    
   
 ####Option 2: via apt  
 step 1: apt-get install mininet  
