@@ -8,7 +8,7 @@ You also may use the example file in /examples/simplewifitopology.py
 
 ##Installation  
 ####Option 1: via install.sh  
-It is not work properly yet  
+It is not working properly yet  
   
 ####Option 2: via apt  
 step 1: apt-get install mininet  
