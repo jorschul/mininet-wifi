@@ -91,10 +91,6 @@ import re
 import select
 import signal
 import random
-import subprocess
-import socket
-import fcntl
-import struct
 import fileinput
 
 from time import sleep
@@ -111,7 +107,7 @@ from mininet.util import ( quietRun, fixLimits, numCores, ensureRoot,
                            macColonHex, ipStr, ipParse, netParse, ipAdd,
                            waitListening )
 from mininet.term import cleanUpScreens, makeTerms
-from mininet.wireless import module
+from mininet.wifi import module, phyInterface
 from __builtin__ import True
 
 # Mininet version: should be consistent with README and LICENSE
@@ -211,11 +207,9 @@ class Mininet( object ):
         Mininet.init()  # Initialize Mininet if necessary
                 
         if (Node.isWireless==True or self.wirelessRadios!=0):
-            self.phyInterfaces.append(subprocess.check_output("iwconfig 2>&1 | grep IEEE | awk '{print $1}'", shell=True))
+            phyInterface.getNumberOfWlanIfaces(phyInterface())
             Node.isWireless=True
-            module(self.wirelessRadios, Node.isWireless) #Initatilize WiFi Module
-            self.resultIface = (subprocess.check_output("find /sys/kernel/debug/ieee80211 -name hwsim | cut -d/ -f 6 | sort", shell=True))
-            self.splitResultIface = self.resultIface.split("\n")
+            
         
         self.isWireless = Node.isWireless
 
@@ -308,12 +302,7 @@ class Mininet( object ):
         self.stationName.append(name)
         
        #ifconfig = commands.getoutput("ifconfig " + 'wlan1' + "| grep HWaddr | awk '{ print $5 }'")
-        
-        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        info = fcntl.ioctl(s.fileno(), 0x8927,  struct.pack('256s', 'wlan%s'[:15]) % str(self.nextWiphyIface+len(self.phyInterfaces)))
-        self.storeMacAddress.append(''.join(['%02x:' % ord(char) for char in info[18:24]])[:-1])
-        #s = 'wlan%s' % self.nextIface
-        #self.storeMacAddress.append(s)
+        self.storeMacAddress = (phyInterface.getMacAddress(phyInterface(self.nextWiphyIface+len(self.phyInterfaces), self.nextIface, self.phyInterfaces)))
         
         os.system("iw phy phy%s set netns %s" % (self.splitResultIface[self.nextWiphyIface][3:], h.pid))
         if(self.phyInterfaces[0][:4]!="wlan"):
@@ -431,11 +420,7 @@ class Mininet( object ):
             self.countAP = len(self.baseStationName)
             self.apcommand = ""
         
-        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        info = fcntl.ioctl(s.fileno(), 0x8927,  struct.pack('256s', 'wlan%s'[:15]) % str(self.nextIface+len(self.phyInterfaces)))
-        self.storeMacAddress.append(''.join(['%02x:' % ord(char) for char in info[18:24]])[:-1])
-        #s = 'wlan%s' % self.nextIface
-        #self.storeMacAddress.append(s)
+        self.storeMacAddress = (phyInterface.getMacAddress(phyInterface(self.nextWiphyIface+len(self.phyInterfaces), self.nextIface, self.phyInterfaces)))
         
         self.apcommand = self.apcommand + self.cmd
         self.nextIface+=1
