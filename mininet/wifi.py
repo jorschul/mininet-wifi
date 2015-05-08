@@ -4,7 +4,6 @@ from mininet.log import info
 import socket
 import struct
 import fcntl
-import subprocess
 
 class module( object ):
     

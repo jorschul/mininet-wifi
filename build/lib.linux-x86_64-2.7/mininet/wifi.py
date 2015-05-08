@@ -4,7 +4,6 @@ from mininet.log import info
 import socket
 import struct
 import fcntl
-import subprocess
 
 class module( object ):
     
@@ -45,10 +44,4 @@ class phyInterface ( object ):
         return self.storeMacAddress
         #s = 'wlan%s' % self.nextIface
         #self.storeMacAddress.append(s)
-    
-    def getNumberOfWlanIfaces(self):
-        self.phyInterfaces.append(subprocess.check_output("iwconfig 2>&1 | grep IEEE | awk '{print $1}'", shell=True))
-        self.module(self.wirelessRadios, Node.isWireless) #Initatilize WiFi Module
-        self.resultIface = (subprocess.check_output("find /sys/kernel/debug/ieee80211 -name hwsim | cut -d/ -f 6 | sort", shell=True))
-        self.splitResultIface = self.resultIface.split("\n")
-    
+   

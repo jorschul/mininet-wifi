@@ -91,6 +91,7 @@ import re
 import select
 import signal
 import random
+import subprocess
 import fileinput
 
 from time import sleep
@@ -207,9 +208,11 @@ class Mininet( object ):
         Mininet.init()  # Initialize Mininet if necessary
                 
         if (Node.isWireless==True or self.wirelessRadios!=0):
-            phyInterface.getNumberOfWlanIfaces(phyInterface())
+            self.phyInterfaces.append(subprocess.check_output("iwconfig 2>&1 | grep IEEE | awk '{print $1}'", shell=True))
             Node.isWireless=True
-            
+            module(self.wirelessRadios, Node.isWireless) #Initatilize WiFi Module
+            self.resultIface = (subprocess.check_output("find /sys/kernel/debug/ieee80211 -name hwsim | cut -d/ -f 6 | sort", shell=True))
+            self.splitResultIface = self.resultIface.split("\n")
         
         self.isWireless = Node.isWireless
 
