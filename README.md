@@ -3,9 +3,14 @@ Mininet-WiFi is a release of Mininet (http://mininet.org/) which allows the usin
 
 ##Installation  
 ####Option 1: via install.sh  
+<<<<<<< HEAD
 step 1: git clone https://github.com/intrig-unicamp/mininet-wifi  
 step 2: cd mininet-wifi  
 step 3: util/install.sh      
+=======
+step 1: cd mininet-wifi  
+step 2: util/install.sh      
+>>>>>>> b1de9f2f2ba1336015fbb22f3521ae6c362cadff
   
 ####Option 2: via apt  
 step 1: apt-get install mininet  
